@@ -84,6 +84,7 @@ class Packaging {
 		metadata.title = this.getElementText(xml, "title");
 		metadata.creator = this.getElementText(xml, "creator");
 		metadata.description = this.getElementText(xml, "description");
+		metadata.subject = this.getElementText(xml, "subject");
 
 		metadata.pubdate = this.getElementText(xml, "date");
 
