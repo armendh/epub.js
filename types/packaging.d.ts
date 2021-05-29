@@ -12,10 +12,10 @@ export interface PackagingObject {
 
 export interface PackagingMetadataObject {
   title: string,
-  creator: string,
+  creators: Array<string>,
   description: string,
   pubdate: string,
-  publisher: string,
+  publishers: string,
   identifier: string,
   language: string,
   rights: string,
@@ -24,7 +24,8 @@ export interface PackagingMetadataObject {
   orientation: string,
   flow: string,
   viewport: string,
-  spread: string
+  spread: string,
+  subjects: Array<string>
 }
 
 export interface PackagingSpineItem {
@@ -73,6 +74,8 @@ export default class Packaging {
   private findCoverPath(packageXml: Node): string;
 
   private getElementText(xml: Node, tag: string): string
+  
+  private getElementTexts(xml: Node, tag: string): Array<string>
 
   private getPropertyText(xml: Node, property: string): string
 }

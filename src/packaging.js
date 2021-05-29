@@ -82,9 +82,9 @@ class Packaging {
 		var metadata = {};
 
 		metadata.title = this.getElementText(xml, "title");
-		metadata.creator = this.getElementText(xml, "creator");
+		metadata.creators = this.getElementTexts(xml, "creator");
 		metadata.description = this.getElementText(xml, "description");
-		metadata.subject = this.getElementText(xml, "subject");
+		metadata.subjects = this.getElementTexts(xml, "subject");
 
 		metadata.pubdate = this.getElementText(xml, "date");
 
@@ -298,6 +298,28 @@ class Packaging {
 
 		return "";
 
+	}
+
+	/**
+	 * Get texts of a namespaced element
+	 * @private
+	 * @param  {node} xml
+	 * @param  {string} tag
+	 * @return {string} text
+	 */
+	getElementTexts(xml, tag){
+		var found = xml.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/", tag);
+		var values = []
+
+		for (let index = 0; index < found.length; index++) {
+			const el = found[index];
+			if(el.childNodes.length){
+				const value = el.childNodes[0].nodeValue;
+				values.push(value)
+			}
+		}
+
+		return values;
 	}
 
 	/**
